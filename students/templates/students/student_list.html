@@ -24,6 +24,69 @@
         </a>
 
     </div>
+    <!-- SEARCH + SORT -->
+
+<form method="GET" class="row mb-4">
+
+    <!-- SEARCH -->
+
+    <div class="col-md-4">
+
+        <input
+            type="text"
+            name="roll_number"
+            class="form-control"
+            placeholder="Search by Roll Number"
+            value="{{ request.GET.roll_number }}"
+        >
+
+    </div>
+
+    <!-- SORT -->
+
+    <div class="col-md-3">
+
+        <select
+            name="sort"
+            class="form-select"
+        >
+
+            <option value="">
+                Sort By
+            </option>
+
+            <option value="asc">
+
+                Roll Number Ascending
+
+            </option>
+
+            <option value="desc">
+
+                Roll Number Descending
+
+            </option>
+
+        </select>
+
+    </div>
+
+    <!-- BUTTON -->
+
+    <div class="col-md-2">
+
+        <button
+            type="submit"
+            class="btn btn-primary w-100"
+        >
+
+            Apply
+
+        </button>
+
+    </div>
+
+</form>
 
     <!-- Student Table -->
 

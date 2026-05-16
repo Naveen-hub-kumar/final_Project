@@ -12,19 +12,9 @@
 
                 <h2 class="mb-4 text-center">
 
-                    Add Teacher
+                    Update Teacher
 
                 </h2>
-
-                {% if error %}
-
-                    <div class="alert alert-danger">
-
-                        {{ error }}
-
-                    </div>
-
-                {% endif %}
 
                 <form method="POST">
 
@@ -42,6 +32,7 @@
                             type="text"
                             name="name"
                             class="form-control"
+                            value="{{ teacher.user.first_name }}"
                             required
                         >
 
@@ -59,23 +50,7 @@
                             type="email"
                             name="email"
                             class="form-control"
-                            required
-                        >
-
-                    </div>
-
-                    <div class="mb-3">
-
-                        <label class="form-label">
-
-                            Password
-
-                        </label>
-
-                        <input
-                            type="password"
-                            name="password"
-                            class="form-control"
+                            value="{{ teacher.user.email }}"
                             required
                         >
 
@@ -93,6 +68,7 @@
                             type="text"
                             name="phone"
                             class="form-control"
+                            value="{{ teacher.phone }}"
                             required
                         >
 
@@ -110,6 +86,7 @@
                             type="text"
                             name="subject"
                             class="form-control"
+                            value="{{ teacher.subject }}"
                             required
                         >
 
@@ -129,13 +106,23 @@
                             required
                         >
 
-                            <option value="Teacher">
+                            <option
+                                value="Teacher"
+                                {% if teacher.role == 'Teacher' %}
+                                selected
+                                {% endif %}
+                            >
 
                                 Teacher
 
                             </option>
 
-                            <option value="Admin">
+                            <option
+                                value="Admin"
+                                {% if teacher.role == 'Admin' %}
+                                selected
+                                {% endif %}
+                            >
 
                                 Admin
 
@@ -147,10 +134,10 @@
 
                     <button
                         type="submit"
-                        class="btn btn-primary w-100"
+                        class="btn btn-success w-100"
                     >
 
-                        Add Teacher
+                        Update Teacher
 
                     </button>
 

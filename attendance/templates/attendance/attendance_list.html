@@ -2,195 +2,153 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container mt-4">
 
-    <!-- PAGE TITLE -->
-
-    <div class="d-flex justify-content-between align-items-center mb-4">
-
-        <h1>
-
-            Attendance Management
-
-        </h1>
-
-    </div>
-
-    <div class="card shadow">
+    <div class="card shadow-lg border-0">
 
         <div class="card-body">
 
-            <!-- DATE FILTER -->
+            <h1 class="fw-bold mb-4">
 
-            <form
-                method="GET"
-                class="row mb-4"
-            >
+                Attendance Management
 
-                <div class="col-md-4">
-
-                    <label class="form-label">
-
-                        Select Date
-
-                    </label>
-
-                    <input
-                        type="date"
-                        name="date"
-                        class="form-control"
-                        value="{{ selected_date }}"
-                    >
-
-                </div>
-
-                <div class="col-md-2 mt-4">
-
-                    <button
-                        type="submit"
-                        class="btn btn-primary"
-                    >
-
-                        Load Attendance
-
-                    </button>
-
-                </div>
-
-            </form>
-
-            <!-- INFORMATION -->
-
-            <div class="mb-3">
-
-                <span class="text-success fw-bold">
-
-                    ✔ Checked = Present
-
-                </span>
-
-                <br>
-
-                <span class="text-danger fw-bold">
-
-                    ✘ Unchecked = Absent
-
-                </span>
-
-            </div>
-
-            <!-- ATTENDANCE FORM -->
+            </h1>
 
             <form method="POST">
 
                 {% csrf_token %}
 
-                <input
-                    type="hidden"
-                    name="date"
-                    value="{{ selected_date }}"
-                >
+                <div class="row mb-4">
 
-                <table class="table table-bordered table-hover">
+                    <div class="col-md-4">
 
-                    <thead class="table-dark">
+                        <label class="form-label fw-bold">
 
-                        <tr>
+                            Select Date
 
-                            <th>Name</th>
+                        </label>
 
-                            <th>Roll Number</th>
+                        <input
+                            type="date"
+                            name="date"
+                            class="form-control"
+                            required
+                        >
 
-                            <th>Course</th>
+                    </div>
 
-                            <th class="text-center">
+                </div>
 
-                                Present
+                <div class="mb-3">
 
-                            </th>
+                    <span class="badge bg-success">
 
-                        </tr>
+                        ✔ Present
 
-                    </thead>
+                    </span>
 
-                    <tbody>
+                    <span class="badge bg-danger">
 
-                        {% for item in attendance_data %}
+                        ✘ Absent
 
-                        <tr>
+                    </span>
 
-                            <!-- NAME -->
+                </div>
+                
 
-                            <td>
+                <div class="table-responsive">
 
-                                {{ item.student.name }}
+                    <table class="table table-bordered table-hover align-middle">
 
-                            </td>
+                        <thead class="table-dark">
 
-                            <!-- ROLL NUMBER -->
+                            <tr>
 
-                            <td>
+                                <th>Name</th>
 
-                                {{ item.student.roll_number }}
+                                <th>Roll Number</th>
 
-                            </td>
+                                <th>Course</th>
 
-                            <!-- COURSE -->
+                                <th class="text-center">
 
-                            <td>
+                                    Present
 
-                                {{ item.student.course }}
+                                </th>
 
-                            </td>
+                                <th class="text-center">
 
-                            <!-- CHECKBOX -->
+                                    Absent
 
-                            <td class="text-center">
+                                </th>
 
-                                <div class="form-check d-flex justify-content-center">
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for student in students %}
+
+                            <tr>
+
+                                <td>
+
+                                    {{ student.name }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ student.roll_number }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ student.course }}
+
+                                </td>
+
+                                <!-- PRESENT -->
+
+                                <td class="text-center">
 
                                     <input
                                         type="checkbox"
-                                        name="status_{{ item.student.id }}"
-                                        class="form-check-input"
-                                        style="width: 25px; height: 25px;"
-                                        {% if item.status == 'Present' %}
-                                        checked
-                                        {% endif %}
+                                        name="present_{{ student.id }}"
+                                        class="present-checkbox"
+                                        data-student="{{ student.id }}"
                                     >
 
-                                </div>
+                                </td>
 
-                            </td>
+                                <!-- ABSENT -->
 
-                        </tr>
+                                <td class="text-center">
 
-                        {% empty %}
+                                    <input
+                                        type="checkbox"
+                                        name="absent_{{ student.id }}"
+                                        class="absent-checkbox"
+                                        data-student="{{ student.id }}"
+                                    >
 
-                        <tr>
+                                </td>
 
-                            <td
-                                colspan="4"
-                                class="text-center text-danger"
-                            >
+                            </tr>
 
-                                No Students Found
+                            {% endfor %}
 
-                            </td>
+                        </tbody>
 
-                        </tr>
+                    </table>
 
-                        {% endfor %}
-
-                    </tbody>
-
-                </table>
-
-                <!-- SAVE BUTTON -->
+                </div>
 
                 <button
                     type="submit"
-                    class="btn btn-success"
+                    class="btn btn-success btn-lg mt-3"
                 >
 
                     Save Attendance
@@ -204,5 +162,75 @@
     </div>
 
 </div>
+
+<!-- CHECKBOX SCRIPT -->
+
+<script>
+
+document.addEventListener(
+    'DOMContentLoaded',
+    function () {
+
+        const presentCheckboxes = document.querySelectorAll(
+            '.present-checkbox'
+        );
+
+        const absentCheckboxes = document.querySelectorAll(
+            '.absent-checkbox'
+        );
+
+        presentCheckboxes.forEach(function (checkbox) {
+
+            checkbox.addEventListener(
+                'change',
+                function () {
+
+                    const studentId = this.dataset.student;
+
+                    const absent = document.querySelector(
+
+                        `.absent-checkbox[data-student="${studentId}"]`
+
+                    );
+
+                    if (this.checked) {
+
+                        absent.checked = false;
+
+                    }
+
+                }
+            );
+
+        });
+
+        absentCheckboxes.forEach(function (checkbox) {
+
+            checkbox.addEventListener(
+                'change',
+                function () {
+
+                    const studentId = this.dataset.student;
+
+                    const present = document.querySelector(
+
+                        `.present-checkbox[data-student="${studentId}"]`
+
+                    );
+
+                    if (this.checked) {
+
+                        present.checked = false;
+
+                    }
+
+                }
+            );
+
+        });
+
+    });
+
+</script>
 
 {% endblock %}

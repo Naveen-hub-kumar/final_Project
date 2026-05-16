@@ -1,0 +1,75 @@
+{% extends 'private_base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h2 class="fw-bold mb-4">
+
+                Attendance Details
+
+            </h2>
+
+            <table class="table table-bordered">
+
+                <tr>
+
+                    <th>Student</th>
+
+                    <td>
+
+                        {{ attendance.student.name }}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Roll Number</th>
+
+                    <td>
+
+                        {{ attendance.student.roll_number }}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Date</th>
+
+                    <td>
+
+                        {{ attendance.date }}
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <th>Status</th>
+
+                    <td>
+
+                        {{ attendance.status }}
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

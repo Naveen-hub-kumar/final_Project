@@ -12,9 +12,49 @@ from .serializers import StudentSerializer
 
 
 # STUDENT LIST
+from django.shortcuts import render
+from .models import Student
+
+
 def student_list(request):
 
+    # SEARCH
+
+    search_roll = request.GET.get(
+        'roll_number'
+    )
+
+    # SORT
+
+    sort = request.GET.get(
+        'sort'
+    )
+
     students = Student.objects.all()
+
+    # SEARCH FILTER
+
+    if search_roll:
+
+        students = students.filter(
+
+            roll_number__icontains=search_roll
+
+        )
+
+    # SORTING
+
+    if sort == 'asc':
+
+        students = students.order_by(
+            'roll_number'
+        )
+
+    elif sort == 'desc':
+
+        students = students.order_by(
+            '-roll_number'
+        )
 
     return render(
 

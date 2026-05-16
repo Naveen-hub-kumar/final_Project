@@ -1,0 +1,188 @@
+{% extends 'private_base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h1 class="fw-bold mb-4">
+
+                Attendance Records
+
+            </h1>
+
+            <!-- COUNTS -->
+
+            <div class="mb-3">
+
+                <span class="badge bg-success p-2">
+
+                    Present:
+                    {{ present_count }}
+
+                </span>
+
+                <span class="badge bg-danger p-2">
+
+                    Absent:
+                    {{ absent_count }}
+
+                </span>
+
+            </div>
+
+            <!-- SEARCH -->
+
+            <form method="GET" class="row mb-4">
+
+                <div class="col-md-4">
+
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Search Student"
+                        class="form-control"
+                    >
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <input
+                        type="date"
+                        name="date"
+                        class="form-control"
+                    >
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+
+                        Filter
+
+                    </button>
+
+                </div>
+
+            </form>
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Name</th>
+
+                        <th>Roll Number</th>
+
+                        <th>Date</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for attendance in page_obj %}
+
+                    <tr>
+
+                        <td>
+
+                            {{ attendance.student.name }}
+
+                        </td>
+
+                        <td>
+
+                            {{ attendance.student.roll_number }}
+
+                        </td>
+
+                        <td>
+
+                            {{ attendance.date }}
+
+                        </td>
+
+                        <td>
+
+                            {% if attendance.status == 'Present' %}
+
+                            <span class="badge bg-success">
+
+                                Present
+
+                            </span>
+
+                            {% else %}
+
+                            <span class="badge bg-danger">
+
+                                Absent
+
+                            </span>
+
+                            {% endif %}
+
+                        </td>
+
+                        <td>
+
+                            <a
+                                href="/attendance/view/{{ attendance.id }}/"
+                                class="btn btn-info btn-sm"
+                            >
+
+                                View
+
+                            </a>
+
+                            <a
+                                href="/attendance/edit/{{ attendance.id }}/"
+                                class="btn btn-warning btn-sm"
+                            >
+
+                                Edit
+
+                            </a>
+
+                            <a
+                                href="/attendance/delete/{{ attendance.id }}/"
+                                class="btn btn-danger btn-sm"
+                            >
+
+                                Delete
+
+                            </a>
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
