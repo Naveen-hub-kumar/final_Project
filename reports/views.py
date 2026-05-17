@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from reportlab.pdfgen import canvas
 
 # Reports Dashboard
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def report_dashboard(request):
 
     students = Student.objects.all()
@@ -56,7 +56,7 @@ def report_dashboard(request):
     )
 
 # Low Attendance
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def low_attendance(request):
 
     students = Student.objects.all()
@@ -103,7 +103,7 @@ def low_attendance(request):
     )
 
 # Monthly Report
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def monthly_report(request):
 
     month = request.GET.get('month')
@@ -123,7 +123,7 @@ def monthly_report(request):
     )
 
 # Student Search Report
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def student_report(request):
 
     query = request.GET.get('q')
@@ -173,7 +173,7 @@ def student_report(request):
         {'results': results}
     )
 # Date Range Report
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def date_range_report(request):
 
     attendance = Attendance.objects.all()
@@ -200,7 +200,7 @@ def date_range_report(request):
         context
     )
 # Export PDF
-#@login_required(login_url='login')
+@login_required(login_url='login')
 def export_pdf(request):
 
     response = HttpResponse(

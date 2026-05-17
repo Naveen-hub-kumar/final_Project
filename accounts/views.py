@@ -6,6 +6,8 @@ from django.contrib.auth import login, logout
 
 from django.contrib.auth.models import User
 
+from django.contrib import messages
+
 from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm
@@ -13,7 +15,7 @@ from .forms import RegisterForm
 from .forms import TeacherForm
 
 from .models import Teacher
-
+from django.http import HttpResponse
 
 from django.shortcuts import get_object_or_404
 
@@ -23,31 +25,58 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 # REGISTER VIEW
+from .forms import RegisterForm, TeacherForm
+from .models import Teacher
+
+
 def register_view(request):
 
-    form = RegisterForm(
-        request.POST or None
-    )
+    if request.method == 'POST':
 
-    if form.is_valid():
+        form = RegisterForm(request.POST)
+        teacher_form = TeacherForm(request.POST)
 
-        print("REGISTER SUCCESS")
+        if form.is_valid() and teacher_form.is_valid():
 
-        form.save()
+            # SAVE USER
+            user = form.save()
 
-        return redirect('/accounts/login/')
+            # SAVE TEACHER
+            teacher = teacher_form.save(commit=False)
+
+            # CONNECT USER WITH TEACHER
+            teacher.user = user
+
+            teacher.save()
+
+            return redirect('/accounts/login/')
+
+        else:
+
+            print(form.errors)
+            print(teacher_form.errors)
 
     else:
 
-        print(form.errors)
+        form = RegisterForm()
+        teacher_form = TeacherForm()
+
+    context = {
+        'form': form,
+        'teacher_form': teacher_form
+    }
 
     return render(
         request,
         'accounts/register.html',
-        {'form': form}
+        context
     )
 
 
+
+def is_teacher(user):
+
+    return Teacher.objects.filter(user=user).exists()
 # LOGIN VIEW
 def login_view(request):
 
@@ -82,10 +111,9 @@ def logout_view(request):
 
     return redirect('/accounts/login/')
 
-# @login_required(login_url='/accounts/login/')
-# @admin_required
+@login_required(login_url='/accounts/login/')
+@admin_required
 def teacher_list(request):
-
     teachers = Teacher.objects.all()
 
     return render(
@@ -101,8 +129,9 @@ def teacher_list(request):
         }
 
     )
-# @login_required(login_url='/accounts/login/')
-# @admin_required
+
+@login_required(login_url='/accounts/login/')
+@admin_required
 def view_teacher(request, id):
 
     teacher = get_object_or_404(
@@ -124,10 +153,9 @@ def view_teacher(request, id):
 
     )
 
-#@login_required(login_url='/accounts/login/')
-#@admin_required
+@login_required(login_url='/accounts/login/')
+@admin_required
 def add_teacher(request):
-
     if request.method == 'POST':
 
         name = request.POST.get('name')
@@ -207,7 +235,6 @@ def add_teacher(request):
 @login_required(login_url='/accounts/login/')
 @admin_required
 def update_teacher(request, id):
-
     teacher = get_object_or_404(
         Teacher,
         id=id
@@ -258,8 +285,8 @@ def update_teacher(request, id):
     )
 
 
-#@login_required(login_url='/accounts/login/')
-#@admin_required
+@login_required(login_url='/accounts/login/')
+@admin_required
 def view_teacher(request, id):
 
     teacher = get_object_or_404(
@@ -281,10 +308,9 @@ def view_teacher(request, id):
 
     )
 
-#@login_required(login_url='/accounts/login/')
-#@admin_required
+@login_required(login_url='/accounts/login/')
+@admin_required
 def delete_teacher(request, id):
-
     teacher = get_object_or_404(
         Teacher,
         id=id

@@ -1,7 +1,41 @@
 {% extends 'private_base.html' %}
+
 {% block content %}
 
+{% if messages %}
 
+    {% for message in messages %}
+
+        <div class="alert alert-warning alert-dismissible fade show"
+             role="alert">
+
+            <strong>{{ message }}</strong>
+
+            <br><br>
+
+            <a href="{% url 'logout' %}">
+                <button class="btn btn-danger btn-sm">
+                    Logout
+                </button>
+            </a>
+
+            <a href="{% url 'login' %}">
+                <button class="btn btn-primary btn-sm">
+                    Admin Login
+                </button>
+            </a>
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+            </button>
+
+        </div>
+
+    {% endfor %}
+
+{% endif %}
 <div class="container mt-5">
 
     <h1 class="text-center mb-5">
@@ -130,5 +164,6 @@
     </div>
 
 </div>
+
 
 {% endblock content %}

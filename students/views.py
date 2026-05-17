@@ -1,23 +1,24 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.contrib import messages
 from .models import Student
-
+from django.http import HttpResponse
 from .forms import StudentForm
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import StudentSerializer
 
-
+from django.contrib.auth.decorators import login_required
+from accounts.decorators import admin_required
 
 
 # STUDENT LIST
 from django.shortcuts import render
 from .models import Student
 
-
+@login_required(login_url='login')
+@admin_required
 def student_list(request):
-
     # SEARCH
 
     search_roll = request.GET.get(
@@ -70,10 +71,10 @@ def student_list(request):
 
     )
 
-
+@login_required(login_url='login')
 # ADD STUDENT
+@admin_required
 def add_student(request):
-
     form = StudentForm(
         request.POST or None
     )
@@ -97,11 +98,10 @@ def add_student(request):
         }
 
     )
-
-
+@login_required(login_url='login')
+@admin_required
 # VIEW STUDENT
 def view_student(request, id):
-
     student = get_object_or_404( Student, id=id)
 
     return render( request,'students/view_student.html',
@@ -114,10 +114,10 @@ def view_student(request, id):
 
     )
 
-
+@login_required(login_url='login')
+@admin_required
 # UPDATE STUDENT
 def update_student(request, id):
-
     student = get_object_or_404(
         Student,
         id=id
@@ -141,10 +141,10 @@ def update_student(request, id):
 
     )
 
-
+@login_required(login_url='login')
+@admin_required
 # DELETE STUDENT
 def delete_student(request, id):
-
     student = get_object_or_404( Student,id=id )
 
     if request.method == 'POST':
