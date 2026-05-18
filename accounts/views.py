@@ -131,12 +131,6 @@ def is_teacher(user):
 
     return Teacher.objects.filter(user=user).exists()
 # LOGIN VIEW
-from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login
-
-
-
 
 def login_view(request):
 
@@ -255,7 +249,7 @@ def add_teacher(request):
 
         user = User.objects.create_user(
 
-            username=email,
+            username=name,
 
             email=email,
 
@@ -275,7 +269,8 @@ def add_teacher(request):
 
             subject=subject,
 
-            role=role
+            role=role,
+            email=email
 
         )
 
