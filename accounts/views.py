@@ -29,55 +29,115 @@ from .forms import RegisterForm, TeacherForm
 from .models import Teacher
 
 
+
+# ADMIN ONLY TEACHER REGISTRATION
+
+# accounts/views.py
+
+
+
 def register_view(request):
 
     if request.method == 'POST':
 
         form = RegisterForm(request.POST)
+
         teacher_form = TeacherForm(request.POST)
 
         if form.is_valid() and teacher_form.is_valid():
 
-            # SAVE USER
+            email = form.cleaned_data['email']
+
+            phone = teacher_form.cleaned_data['phone']
+
+            subject = teacher_form.cleaned_data['subject']
+
+            # VERIFY TEACHER DETAILS
+
+            teacher = Teacher.objects.filter(
+
+                email=email,
+
+                phone=phone,
+
+                subject=subject,
+
+                is_registered=False
+
+            ).first()
+
+            # IF DETAILS NOT FOUND
+
+            if not teacher:
+
+                messages.error(
+
+                    request,
+
+                    "Teacher details not verified."
+
+                )
+
+                return redirect('register')
+
+            # CREATE USER ACCOUNT
+
             user = form.save()
 
-            # SAVE TEACHER
-            teacher = teacher_form.save(commit=False)
-
             # CONNECT USER WITH TEACHER
+
             teacher.user = user
+
+            teacher.is_registered = True
 
             teacher.save()
 
-            return redirect('/accounts/login/')
+            messages.success(
 
-        else:
+                request,
 
-            print(form.errors)
-            print(teacher_form.errors)
+                "Registration successful."
+
+            )
+
+            return redirect('login')
 
     else:
 
         form = RegisterForm()
+
         teacher_form = TeacherForm()
 
     context = {
+
         'form': form,
+
         'teacher_form': teacher_form
+
     }
 
     return render(
-        request,
-        'accounts/register.html',
-        context
-    )
 
+        request,
+
+        'accounts/register.html',
+
+        context
+
+    )
 
 
 def is_teacher(user):
 
     return Teacher.objects.filter(user=user).exists()
 # LOGIN VIEW
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login
+
+
+
+
 def login_view(request):
 
     form = AuthenticationForm(
@@ -102,7 +162,6 @@ def login_view(request):
         'accounts/login.html',
         {'form': form}
     )
-
 
 # LOGOUT VIEW
 def logout_view(request):

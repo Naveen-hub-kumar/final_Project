@@ -10,7 +10,7 @@ urlpatterns = [
         views.dashboard,
         name='dashboard'
     ),
-
+     
     path(
         'list/',
         views.attendance_list,

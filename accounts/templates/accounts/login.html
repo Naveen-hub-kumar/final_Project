@@ -1,47 +1,121 @@
 {% extends 'public_base.html' %}
 
+{% load static %}
+
 {% block content %}
 
-<div class="container mt-5">
+<link
+    rel="stylesheet"
+    href="{% static 'css/login.css' %}"
+>
 
-    <div class="row justify-content-center">
+<div class="login-wrapper">
 
-        <div class="col-md-5">
+    <div class="login-container">
 
-            <div class="card shadow p-4">
+        <!-- LEFT SIDE -->
 
-                <h2 class="mb-4 text-center">
+        <div class="login-left">
+
+            <h1 class="logo-title">
+
+                AMS
+
+            </h1>
+
+            <h2>
+
+                Login to Your Account
+
+            </h2>
+
+            <p>
+
+                Welcome back! Please login to continue.
+
+            </p>
+            {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-warning">
+
+                {{ message }}
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+
+            <form method="POST" autocomplete="off">
+
+                {% csrf_token %}
+
+                <!-- Username -->
+
+                <div class="input-box">
+
+                    <i class="bi bi-person"></i>
+
+                    {{ form.username }}
+
+                </div>
+
+                <!-- Password -->
+
+                <div class="input-box">
+
+                    <i class="bi bi-lock"></i>
+
+                    {{ form.password }}
+
+                </div>
+
+                <!-- Button -->
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
 
                     Login
 
+                </button>
+
+            </form>
+
+            <p class="register-text">
+
+                Don't have an account?
+
+                <a href="/accounts/register/">
+
+                    Register
+
+                </a>
+
+            </p>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+
+        <div class="login-right">
+
+            <div class="right-content">
+
+                <h2>
+
+                    Attendance Management System 
+
                 </h2>
 
-                <form method="POST" autocomplete="off">
+                <p>
 
-                    {% csrf_token %}
-
-                    {{ form.as_p }}
-
-                    <button
-                        type="submit"
-                        class="btn btn-success w-100"
-                    >
-
-                        Login
-
-                    </button>
-
-                </form>
-
-                <p class="mt-3 text-center">
-
-                    Don't have an account?
-
-                    <a href="/accounts/register/">
-
-                        Register
-
-                    </a>
+                    Manage attendance, students,
+                    teachers and reports efficiently.
 
                 </p>
 
