@@ -4,8 +4,8 @@ body{
     background:
         linear-gradient(
             135deg,
-            #d3b3e9,
-            #c2d3eb
+            #5d5eaa,
+            #80abe7
         );
 
     min-height:100vh;
@@ -21,8 +21,8 @@ body{
     background:
         linear-gradient(
             90deg,
-            #671f88,
-            #1e3a8a
+            #030820,
+            #1b2235
         );
 
     padding:15px 30px;
