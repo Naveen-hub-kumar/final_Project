@@ -1,8 +1,15 @@
 /* BODY */
 
 body{
-    background:#eef2f7;
+
+    margin:0;
+    padding:0;
+
+    background:#0f172a;
+
     font-family:'Segoe UI', sans-serif;
+
+    overflow-x:hidden;
 }
 
 
@@ -19,6 +26,19 @@ body{
     align-items:center;
 
     padding:40px;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.65),
+            rgba(0,0,0,0.65)
+        ),
+        url("../images/bg.jpg");
+
+    /* CHANGE IMAGE LATER */
+
+    background-size:cover;
+
+    background-position:center;
 }
 
 
@@ -30,16 +50,20 @@ body{
 
     min-height:650px;
 
-    background:white;
-
-    border-radius:20px;
+    border-radius:24px;
 
     overflow:hidden;
 
     display:flex;
 
+    backdrop-filter:blur(10px);
+
+    background:rgba(255,255,255,0.08);
+
+    border:1px solid rgba(255,255,255,0.1);
+
     box-shadow:
-        0 15px 40px rgba(0,0,0,0.08);
+        0 8px 32px rgba(0,0,0,0.4);
 }
 
 
@@ -56,6 +80,8 @@ body{
     flex-direction:column;
 
     justify-content:center;
+
+    color:white;
 }
 
 
@@ -63,13 +89,15 @@ body{
 
 .logo-title{
 
-    color:#0d6efd;
+    color:#60a5fa;
 
-    font-size:42px;
+    font-size:48px;
 
     font-weight:700;
 
     margin-bottom:40px;
+
+    letter-spacing:2px;
 }
 
 
@@ -77,11 +105,11 @@ body{
 
 .login-left h2{
 
-    font-size:38px;
+    font-size:40px;
 
     font-weight:700;
 
-    color:#1f2937;
+    color:white;
 
     margin-bottom:10px;
 }
@@ -89,9 +117,11 @@ body{
 
 .login-left p{
 
-    color:#6b7280;
+    color:#cbd5e1;
 
     margin-bottom:35px;
+
+    line-height:1.6;
 }
 
 
@@ -99,11 +129,11 @@ body{
 
 .input-box{
 
-    height:58px;
+    height:60px;
 
-    border:1px solid #d1d5db;
+    border:1px solid rgba(255,255,255,0.15);
 
-    border-radius:12px;
+    border-radius:14px;
 
     margin-bottom:25px;
 
@@ -113,13 +143,27 @@ body{
 
     padding:0 18px;
 
-    background:#f9fafb;
+    background:rgba(255,255,255,0.08);
+
+    transition:0.3s;
 }
 
 
+/* INPUT HOVER */
+
+.input-box:hover{
+
+    border-color:#60a5fa;
+
+    transform:translateY(-2px);
+}
+
+
+/* ICON */
+
 .input-box i{
 
-    color:#6b7280;
+    color:#94a3b8;
 
     font-size:20px;
 
@@ -127,7 +171,7 @@ body{
 }
 
 
-/* DJANGO INPUTS */
+/* INPUTS */
 
 .input-box input{
 
@@ -140,6 +184,16 @@ body{
     background:none;
 
     font-size:16px;
+
+    color:white;
+}
+
+
+/* PLACEHOLDER */
+
+.input-box input::placeholder{
+
+    color:#94a3b8;
 }
 
 
@@ -149,13 +203,18 @@ body{
 
     width:100%;
 
-    height:55px;
+    height:58px;
 
     border:none;
 
-    border-radius:12px;
+    border-radius:14px;
 
-    background:#0d6efd;
+    background:
+        linear-gradient(
+            to right,
+            #2563eb,
+            #1d4ed8
+        );
 
     color:white;
 
@@ -169,11 +228,14 @@ body{
 }
 
 
+/* BUTTON HOVER */
+
 .login-btn:hover{
 
-    background:#0b5ed7;
+    transform:translateY(-3px);
 
-    transform:translateY(-2px);
+    box-shadow:
+        0 10px 20px rgba(37,99,235,0.4);
 }
 
 
@@ -184,6 +246,8 @@ body{
     text-align:center;
 
     margin-top:25px;
+
+    color:#cbd5e1;
 }
 
 
@@ -191,7 +255,7 @@ body{
 
     text-decoration:none;
 
-    color:#0d6efd;
+    color:#60a5fa;
 
     font-weight:600;
 }
@@ -206,8 +270,8 @@ body{
     background:
         linear-gradient(
             135deg,
-            #0d6efd,
-            #0056d6
+            rgba(37,99,235,0.9),
+            rgba(30,64,175,0.9)
         );
 
     display:flex;
@@ -217,6 +281,28 @@ body{
     align-items:center;
 
     padding:40px;
+
+    position:relative;
+}
+
+
+/* OPTIONAL PATTERN EFFECT */
+
+.login-right::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    background:rgba(255,255,255,0.08);
+
+    border-radius:50%;
+
+    top:-100px;
+    right:-100px;
 }
 
 
@@ -227,12 +313,16 @@ body{
     color:white;
 
     text-align:center;
+
+    position:relative;
+
+    z-index:2;
 }
 
 
 .right-content h2{
 
-    font-size:42px;
+    font-size:44px;
 
     font-weight:700;
 
@@ -244,7 +334,19 @@ body{
 
     font-size:18px;
 
-    line-height:1.7;
+    line-height:1.8;
+
+    color:#dbeafe;
+}
+
+
+/* ALERT */
+
+.alert{
+
+    border-radius:12px;
+
+    margin-bottom:20px;
 }
 
 
@@ -272,6 +374,6 @@ body{
 
     .login-right{
 
-        padding:60px 20px;
+        display:none;
     }
 }

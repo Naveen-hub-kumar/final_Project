@@ -36,80 +36,51 @@
 <!-- NAVBAR -->
 
 <nav class="navbar navbar-expand-lg navbar-dark custom-navbar ">
+<!-- SIDEBAR -->
 
-    <div class="container-fluid">
+<div class="sidebar">
 
-        <!-- LOGO -->
+    <!-- LOGO -->
 
-        <a
-            class="navbar-brand fw-bold"
-            href="/attendance/"
-        >
+    <div class="logo-section">
+
+        <h2>
 
             AMS
 
-        </a>
+        </h2>
 
-        <!-- MOBILE TOGGLE -->
+    </div>
 
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-        >
+    <!-- MENU -->
 
-            <span class="navbar-toggler-icon"></span>
+    <ul class="sidebar-menu">
 
-        </button>
-
-        <!-- NAVBAR LINKS -->
-
-       <div class="collapse navbar-collapse" id="navbarNav">
-
-    <!-- LEFT MENU -->
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-                <!-- DASHBOARD -->
-
-                <li class="nav-item">
-
-                    <a
-                        class="nav-link"
-                        href="/attendance/"
-                    >
-
-                        Dashboard
-
-                    </a>
-
-                </li>
-
-                <!-- STUDENTS -->
-
-                {% if request.user.is_superuser %}
-
-<li class="nav-item dropdown">
-
-    <a
-        class="nav-link dropdown-toggle"
-        href="#"
-        role="button"
-        data-bs-toggle="dropdown"
-    >
-
-        Students
-
-    </a>
-
-    <ul class="dropdown-menu">
+        <!-- DASHBOARD -->
 
         <li>
 
-            <a
-                class="dropdown-item"
-                href="/students/"
-            >
+            <a href="/attendance/">
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <!-- STUDENTS -->
+
+        {% if request.user.is_superuser %}
+
+        <li class="menu-title">
+
+            Students
+
+        </li>
+
+        <li>
+
+            <a href="/students/">
 
                 Student List
 
@@ -119,10 +90,7 @@
 
         <li>
 
-            <a
-                class="dropdown-item"
-                href="/students/add/"
-            >
+            <a href="/students/add/">
 
                 Add Student
 
@@ -130,37 +98,19 @@
 
         </li>
 
-    </ul>
+        {% endif %}
 
-</li>
+        <!-- ATTENDANCE -->
 
-{% endif %}
+        <li class="menu-title">
 
-                <!-- ATTENDANCE -->
+            Attendance
 
-<li class="nav-item dropdown">
-
-    <a
-        class="nav-link dropdown-toggle"
-        href="#"
-        role="button"
-        data-bs-toggle="dropdown"
-    >
-
-        Attendance
-
-    </a>
-
-    <ul class="dropdown-menu">
-
-        <!-- MARK ATTENDANCE -->
+        </li>
 
         <li>
 
-            <a
-                class="dropdown-item"
-                href="/attendance/list/"
-            >
+            <a href="/attendance/list/">
 
                 Mark Attendance
 
@@ -168,14 +118,9 @@
 
         </li>
 
-        <!-- ATTENDANCE RECORDS -->
-
         <li>
 
-            <a
-                class="dropdown-item"
-                href="/attendance/records/"
-            >
+            <a href="/attendance/records/">
 
                 Attendance Records
 
@@ -183,96 +128,57 @@
 
         </li>
 
-    </ul>
+        <!-- REPORTS -->
 
-</li>
-                <!-- REPORTS -->
+        <li class="menu-title">
 
-                <li class="nav-item dropdown">
+            Reports
 
-                    <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        role="button"
-                        data-bs-toggle="dropdown"
-                    >
-
-                        Reports
-
-                    </a>
-
-                    <ul class="dropdown-menu">
-
-                        <li>
-
-                            <a
-                                class="dropdown-item"
-                                href="/reports/"
-                            >
-
-                                Report Dashboard
-
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <a
-                                class="dropdown-item"
-                                href="/reports/student-report/"
-                            >
-
-                                Student Report
-
-                            </a>
-
-                        </li>
-
-                        <li>
-
-                            <a
-                                class="dropdown-item"
-                                href="/reports/date-range-report/"
-                            >
-
-                                Date Range Report
-
-                            </a>
-
-                        </li>
-
-                    </ul>
-
-                </li>
-
-                <!-- TEACHERS -->
-
-                {% if request.user.is_superuser %}
-
-                    
-
-                <li class="nav-item dropdown">
-
-    <a
-        class="nav-link dropdown-toggle"
-        href="#"
-        role="button"
-        data-bs-toggle="dropdown"
-    >
-
-        Teachers
-
-    </a>
-
-    <ul class="dropdown-menu">
+        </li>
 
         <li>
 
-            <a
-                class="dropdown-item"
-                href="/accounts/teachers/"
-            >
+            <a href="/reports/">
+
+                Report Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="/reports/student-report/">
+
+                Student Report
+
+            </a>
+
+        </li>
+
+      <!-- <li>
+
+            <a href="/reports/date-range-report/">
+
+                Date Range Report
+
+            </a>
+
+        </li>
+--> 
+        <!-- TEACHERS -->
+
+        {% if request.user.is_superuser %}
+
+        <li class="menu-title">
+
+            Teachers
+
+        </li>
+
+        <li>
+
+            <a href="/accounts/teachers/">
 
                 Teacher List
 
@@ -282,10 +188,7 @@
 
         <li>
 
-            <a
-                class="dropdown-item"
-                href="/accounts/add-teacher/"
-            >
+            <a href="/accounts/add-teacher/">
 
                 Add Teacher
 
@@ -293,54 +196,39 @@
 
         </li>
 
+        {% endif %}
+
     </ul>
 
-</li>
+    <!-- USER SECTION -->
 
-{% endif %}
-</ul>
-         <!-- RIGHT MENU -->
+    <div class="sidebar-footer">
 
-<ul class="navbar-nav ms-auto">
-
-    <!-- USER -->
-
-    <li class="nav-item">
-
-        <span class="nav-link text-warning">
+        <p>
 
             Welcome,
             {{ request.user.username }}
 
-        </span>
-
-    </li>
-
-    <!-- LOGOUT -->
-
-    <li class="nav-item">
+        </p>
 
         <a
-            class="nav-link text-danger"
             href="/accounts/logout/"
+            class="logout-btn"
         >
 
             Logout
 
         </a>
 
-    </li>
-
-</ul>
-        </div>
-
     </div>
+
+</div>
 
 </nav>
 
 <!-- PAGE CONTENT -->
 
-<div class="container-fluid mt-4">
+<div class="main-content">
 
     {% block content %}
 
