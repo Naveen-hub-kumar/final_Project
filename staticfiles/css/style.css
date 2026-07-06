@@ -1,0 +1,521 @@
+/* ==========================================
+   RESET
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:'Segoe UI',sans-serif;
+
+    background-image:
+        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+        url("../images/img.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.sidebar{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+
+    width:260px;
+
+    height:100vh;
+
+    background:linear-gradient(180deg,#0f172a,#1e293b);
+
+    display:flex;
+
+    flex-direction:column;
+
+    box-shadow:4px 0 20px rgba(0,0,0,.25);
+
+}
+
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.logo-section{
+
+    padding:25px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.logo-section h2{
+
+    color:#fff;
+
+    font-size:34px;
+
+    letter-spacing:3px;
+
+}
+
+
+/* ==========================================
+   MENU
+========================================== */
+
+.sidebar-menu{
+
+    flex:1;
+
+    list-style:none;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    padding:20px 0;
+
+}
+
+.sidebar-menu li{
+
+    list-style:none;
+
+}
+
+.menu-title{
+
+    color:#94a3b8;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    padding:18px 20px 8px;
+
+}
+
+.sidebar-menu li a{
+
+    display:block;
+
+    margin:4px 12px;
+
+    padding:14px 20px;
+
+    color:#e2e8f0;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+    font-size:17px;
+
+}
+
+.sidebar-menu li a:hover{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    transform:translateX(5px);
+
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.sidebar-footer{
+
+    margin-top:auto;
+
+    background:#1e293b;
+
+    border-top:1px solid rgba(255,255,255,.1);
+
+    padding:20px;
+
+    text-align:center;
+
+}
+
+.sidebar-footer p{
+
+    color:#ffffff;
+
+    font-size:16px;
+
+    margin-bottom:15px;
+
+}
+
+.sidebar-footer strong{
+
+    color:#ffffff;
+
+}
+
+.logout-btn{
+
+    display:block;
+
+    width:100%;
+
+    padding:12px;
+
+    background:#dc2626;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:#b91c1c;
+
+    color:white;
+
+}
+
+
+/* ==========================================
+   MAIN CONTENT
+========================================== */
+
+.main-content{
+
+    margin-left:260px;
+
+    padding:30px;
+
+}
+
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.main-container{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+
+}
+
+
+/* ==========================================
+   PAGE TITLE
+========================================== */
+
+.page-title{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+    color:#1e293b;
+
+    margin-bottom:25px;
+
+}
+
+
+/* ==========================================
+   CARDS
+========================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+.card-header{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.table{
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.table thead{
+
+    background:#1e293b;
+
+    color:white;
+
+}
+
+.table th{
+
+    padding:15px;
+
+}
+
+.table td{
+
+    padding:15px;
+
+    vertical-align:middle;
+
+}
+
+.table-hover tbody tr:hover{
+
+    background:#f1f5f9;
+
+}
+
+
+/* ==========================================
+   CUSTOM TABLE
+========================================== */
+
+.custom-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.custom-table thead{
+
+    background:linear-gradient(to right,#2563eb,#1d4ed8);
+
+    color:white;
+
+}
+
+.custom-table th{
+
+    padding:16px;
+
+}
+
+.custom-table td{
+
+    padding:16px;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+.custom-table tbody tr:hover{
+
+    background:#f8fafc;
+
+}
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.btn{
+
+    border-radius:10px;
+
+    font-weight:600;
+
+}
+
+.btn-primary{
+
+    background:#2563eb;
+
+}
+
+.btn-primary:hover{
+
+    background:#1d4ed8;
+
+}
+
+.btn-success{
+
+    background:#16a34a;
+
+}
+
+.btn-success:hover{
+
+    background:#15803d;
+
+}
+
+.btn-danger{
+
+    background:#dc2626;
+
+}
+
+.btn-danger:hover{
+
+    background:#b91c1c;
+
+}
+
+.btn-warning{
+
+    color:white;
+
+}
+
+
+/* ==========================================
+   FORMS
+========================================== */
+
+.form-control{
+
+    border-radius:10px;
+
+    padding:10px;
+
+}
+
+.form-select{
+
+    border-radius:10px;
+
+}
+
+label{
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================
+   ALERTS
+========================================== */
+
+.alert{
+
+    border-radius:10px;
+
+}
+
+
+/* ==========================================
+   PAGINATION
+========================================== */
+
+.pagination .page-link{
+
+    color:#2563eb;
+
+}
+
+.pagination .active .page-link{
+
+    background:#2563eb;
+
+    border-color:#2563eb;
+
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+    .sidebar{
+
+        width:100%;
+
+        height:auto;
+
+        position:relative;
+
+    }
+
+    .sidebar-menu{
+
+        overflow:visible;
+
+    }
+
+    .sidebar-footer{
+
+        margin-top:0;
+
+    }
+
+    .main-content{
+
+        margin-left:0;
+
+        padding:20px;
+
+    }
+
+    .main-container{
+
+        padding:20px;
+
+    }
+
+    .page-title{
+
+        font-size:24px;
+
+    }
+
+}
