@@ -1,4 +1,4 @@
-{% load static %}
+{% comment %} {% load static %}
 <!DOCTYPE html>
 
 <html lang="en">
@@ -237,6 +237,172 @@
 </div>
 
 <!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html> {% endcomment %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance Management System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <div class="logo-section">
+
+        <h2>AMS</h2>
+
+    </div>
+
+    <ul class="sidebar-menu">
+
+        <li>
+            <a href="/attendance/">
+                Dashboard
+            </a>
+        </li>
+
+        {% if request.user.is_superuser %}
+
+        <li class="menu-title">
+            Students
+        </li>
+
+        <li>
+            <a href="/students/">
+                Student List
+            </a>
+        </li>
+
+        <li>
+            <a href="/students/add/">
+                Add Student
+            </a>
+        </li>
+
+        {% endif %}
+
+        <li class="menu-title">
+            Attendance
+        </li>
+
+        <li>
+            <a href="/attendance/list/">
+                Mark Attendance
+            </a>
+        </li>
+
+        <li>
+            <a href="/attendance/records/">
+                Attendance Records
+            </a>
+        </li>
+
+        <li class="menu-title">
+            Reports
+        </li>
+
+        <li>
+            <a href="/reports/">
+                Report Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="/reports/student-report/">
+                Student Report
+            </a>
+        </li>
+
+        {% if request.user.is_superuser %}
+
+        <li class="menu-title">
+            Teachers
+        </li>
+
+        <li>
+            <a href="/accounts/teachers/">
+                Teacher List
+            </a>
+        </li>
+
+        <li>
+            <a href="/accounts/add-teacher/">
+                Add Teacher
+            </a>
+        </li>
+
+        {% endif %}
+
+    </ul>
+
+
+    <div class="sidebar-footer">
+
+        <p>
+
+            Welcome,
+
+            <strong>{{ request.user.username }}</strong>
+
+        </p>
+
+        <a href="/accounts/logout/"
+           class="logout-btn">
+
+            Logout
+
+        </a>
+
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+
+<div class="main-content">
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <div class="alert alert-{{ message.tags }}">
+
+                {{ message }}
+
+            </div>
+
+        {% endfor %}
+
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock %}
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 

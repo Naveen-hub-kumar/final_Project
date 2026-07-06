@@ -2,6 +2,97 @@
 
 {% block content %}
 
+<div style="
+    max-width:700px;
+    margin:50px auto;
+    background:#ffffff;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+">
+
+    <h2 style="
+        text-align:center;
+        margin-bottom:30px;
+        font-size:38px;
+        font-weight:bold;
+        color:#1e293b;
+    ">
+        Update Student
+    </h2>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {% for field in form %}
+
+        <div style="margin-bottom:20px;">
+
+            <label style="
+                display:block;
+                margin-bottom:8px;
+                font-size:18px;
+                font-weight:600;
+                color:#374151;
+            ">
+                {{ field.label }}
+            </label>
+
+            {{ field }}
+
+        </div>
+
+        {% endfor %}
+
+        <div style="
+            display:flex;
+            gap:15px;
+            margin-top:30px;
+        ">
+
+            <button
+                type="submit"
+                style="
+                    background:#2563eb;
+                    color:white;
+                    border:none;
+                    padding:12px 28px;
+                    border-radius:10px;
+                    font-size:17px;
+                    font-weight:bold;
+                    cursor:pointer;
+                "
+            >
+                Update Student
+            </button>
+
+            <a
+                href="/students/"
+                style="
+                    background:#6c757d;
+                    color:white;
+                    text-decoration:none;
+                    padding:12px 28px;
+                    border-radius:10px;
+                    font-size:17px;
+                    font-weight:bold;
+                "
+            >
+                Cancel
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
+{% comment %} {% extends 'private_base.html' %}
+
+{% block content %}
+
 
 <div class="container mt-5">
 
@@ -21,4 +112,4 @@
 
 </div>
 
-{% endblock content %}
+{% endblock content %} {% endcomment %}

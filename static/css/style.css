@@ -1,63 +1,246 @@
-/* GLOBAL BACKGROUND */
+/* ==========================================
+   RESET
+========================================== */
 
-/* GLOBAL BACKGROUND */
-
-body{
-
-    min-height:100vh;
-
-    font-family:'Segoe UI', sans-serif;
-
+*{
     margin:0;
     padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:'Segoe UI',sans-serif;
 
     background-image:
-        linear-gradient(
-            rgba(0,0,0,0.55),
-            rgba(0,0,0,0.55)
-        ),
+        linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
         url("../images/img.jpg");
 
     background-size:cover;
-
     background-position:center;
-
     background-repeat:no-repeat;
-
     background-attachment:fixed;
 }
 
 
+/* ==========================================
+   SIDEBAR
+========================================== */
 
+.sidebar{
 
+    position:fixed;
 
+    top:0;
+    left:0;
 
+    width:260px;
 
+    height:100vh;
 
+    background:linear-gradient(180deg,#0f172a,#1e293b);
 
+    display:flex;
 
-/* PAGE CONTAINER */
+    flex-direction:column;
 
-.main-container{
+    box-shadow:4px 0 20px rgba(0,0,0,.25);
 
-    width:95%;
-
-    max-width:1200px;
-
-    margin:40px auto;
-
-    background:white;
-
-    border-radius:20px;
-
-    padding:30px;
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,0.15);
 }
 
 
-/* PAGE TITLE */
+/* ==========================================
+   LOGO
+========================================== */
+
+.logo-section{
+
+    padding:25px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.logo-section h2{
+
+    color:#fff;
+
+    font-size:34px;
+
+    letter-spacing:3px;
+
+}
+
+
+/* ==========================================
+   MENU
+========================================== */
+
+.sidebar-menu{
+
+    flex:1;
+
+    list-style:none;
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    padding:20px 0;
+
+}
+
+.sidebar-menu li{
+
+    list-style:none;
+
+}
+
+.menu-title{
+
+    color:#94a3b8;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    padding:18px 20px 8px;
+
+}
+
+.sidebar-menu li a{
+
+    display:block;
+
+    margin:4px 12px;
+
+    padding:14px 20px;
+
+    color:#e2e8f0;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+    font-size:17px;
+
+}
+
+.sidebar-menu li a:hover{
+
+    background:#2563eb;
+
+    color:#fff;
+
+    transform:translateX(5px);
+
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.sidebar-footer{
+
+    margin-top:auto;
+
+    background:#1e293b;
+
+    border-top:1px solid rgba(255,255,255,.1);
+
+    padding:20px;
+
+    text-align:center;
+
+}
+
+.sidebar-footer p{
+
+    color:#ffffff;
+
+    font-size:16px;
+
+    margin-bottom:15px;
+
+}
+
+.sidebar-footer strong{
+
+    color:#ffffff;
+
+}
+
+.logout-btn{
+
+    display:block;
+
+    width:100%;
+
+    padding:12px;
+
+    background:#dc2626;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.logout-btn:hover{
+
+    background:#b91c1c;
+
+    color:white;
+
+}
+
+
+/* ==========================================
+   MAIN CONTENT
+========================================== */
+
+.main-content{
+
+    margin-left:260px;
+
+    padding:30px;
+
+}
+
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.main-container{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+
+}
+
+
+/* ==========================================
+   PAGE TITLE
+========================================== */
 
 .page-title{
 
@@ -68,10 +251,77 @@ body{
     color:#1e293b;
 
     margin-bottom:25px;
+
 }
 
 
-/* TABLE DESIGN */
+/* ==========================================
+   CARDS
+========================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+}
+
+.card-header{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+}
+
+
+/* ==========================================
+   TABLE
+========================================== */
+
+.table{
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.table thead{
+
+    background:#1e293b;
+
+    color:white;
+
+}
+
+.table th{
+
+    padding:15px;
+
+}
+
+.table td{
+
+    padding:15px;
+
+    vertical-align:middle;
+
+}
+
+.table-hover tbody tr:hover{
+
+    background:#f1f5f9;
+
+}
+
+
+/* ==========================================
+   CUSTOM TABLE
+========================================== */
 
 .custom-table{
 
@@ -79,314 +329,150 @@ body{
 
     border-collapse:collapse;
 
-    overflow:hidden;
-
-    border-radius:15px;
-
-    background:white;
 }
-
-
-/* TABLE HEADER */
 
 .custom-table thead{
 
-    background:
-        linear-gradient(
-            to right,
-            #2563eb,
-            #1d4ed8
-        );
+    background:linear-gradient(to right,#2563eb,#1d4ed8);
 
     color:white;
-}
 
+}
 
 .custom-table th{
 
-    padding:18px;
+    padding:16px;
 
-    text-align:left;
-
-    font-size:16px;
-
-    font-weight:600;
 }
-
-
-/* TABLE ROWS */
 
 .custom-table td{
 
     padding:16px;
 
-    border-bottom:
-        1px solid #e5e7eb;
+    border-bottom:1px solid #ddd;
 
-    color:#374151;
-
-    font-size:15px;
-}
-
-
-/* ROW HOVER */
-
-.custom-table tbody tr{
-
-    transition:0.3s;
 }
 
 .custom-table tbody tr:hover{
 
-    background:#f1f5f9;
+    background:#f8fafc;
 
-    transform:scale(1.01);
 }
 
 
-/* BUTTONS */
+/* ==========================================
+   BUTTONS
+========================================== */
 
-.btn-custom{
-
-    border:none;
-
-    padding:8px 16px;
+.btn{
 
     border-radius:10px;
 
-    color:white;
+    font-weight:600;
 
-    font-size:14px;
-
-    cursor:pointer;
-
-    transition:0.3s;
 }
 
-
-/* EDIT BUTTON */
-
-.btn-edit{
+.btn-primary{
 
     background:#2563eb;
+
 }
 
-.btn-edit:hover{
+.btn-primary:hover{
 
     background:#1d4ed8;
+
 }
 
+.btn-success{
 
-/* DELETE BUTTON */
+    background:#16a34a;
 
-.btn-delete{
+}
+
+.btn-success:hover{
+
+    background:#15803d;
+
+}
+
+.btn-danger{
 
     background:#dc2626;
+
 }
 
-.btn-delete:hover{
+.btn-danger:hover{
 
     background:#b91c1c;
-}
-
-
-/* RESPONSIVE */
-
-@media(max-width:768px){
-
-    .main-container{
-
-        width:95%;
-
-        padding:20px;
-    }
-
-    .custom-table{
-
-        font-size:14px;
-    }
-
-    .navbar-brand{
-
-        font-size:22px;
-    }
 
 }
-/* SIDEBAR */
 
-.sidebar{
-
-    width:260px;
-
-    height:100vh;
-
-    position:fixed;
-
-    top:0;
-    left:0;
-
-    background:
-        linear-gradient(
-            180deg,
-            #0f172a,
-            #1e293b
-        );
-
-    padding:25px 20px;
-
-    overflow-y:auto;
-
-    box-shadow:
-        4px 0 20px rgba(0,0,0,0.2);
-}
-
-
-/* LOGO */
-
-.logo-section{
-
-    text-align:center;
-
-    margin-bottom:40px;
-}
-
-.logo-section h2{
+.btn-warning{
 
     color:white;
 
-    font-size:34px;
-
-    font-weight:bold;
-
-    letter-spacing:2px;
 }
 
 
-/* MENU */
+/* ==========================================
+   FORMS
+========================================== */
 
-.sidebar-menu{
-
-    list-style:none;
-
-    padding:0;
-}
-
-
-/* MENU TITLE */
-
-.menu-title{
-
-    color:#94a3b8;
-
-    font-size:14px;
-
-    margin-top:25px;
-
-    margin-bottom:10px;
-
-    text-transform:uppercase;
-
-    letter-spacing:1px;
-}
-
-
-/* MENU ITEMS */
-
-.sidebar-menu li a{
-
-    display:block;
-
-    text-decoration:none;
-
-    color:#e2e8f0;
-
-    padding:14px 18px;
-
-    border-radius:12px;
-
-    margin-bottom:10px;
-
-    transition:0.3s;
-}
-
-
-/* HOVER EFFECT */
-
-.sidebar-menu li a:hover{
-
-    background:#2563eb;
-
-    transform:translateX(5px);
-
-    color:white;
-}
-
-
-/* FOOTER */
-
-.sidebar-footer{
-
-    position:absolute;
-
-    bottom:20px;
-
-    left:20px;
-
-    right:20px;
-
-    text-align:center;
-}
-
-
-/* USER TEXT */
-
-.sidebar-footer p{
-
-    color:#cbd5e1;
-
-    margin-bottom:15px;
-}
-
-
-/* LOGOUT BUTTON */
-
-.logout-btn{
-
-    display:block;
-
-    background:#dc2626;
-
-    color:white;
-
-    text-decoration:none;
-
-    padding:12px;
+.form-control{
 
     border-radius:10px;
 
-    transition:0.3s;
+    padding:10px;
+
+}
+
+.form-select{
+
+    border-radius:10px;
+
+}
+
+label{
+
+    font-weight:600;
+
 }
 
 
-/* LOGOUT HOVER */
+/* ==========================================
+   ALERTS
+========================================== */
 
-.logout-btn:hover{
+.alert{
 
-    background:#b91c1c;
+    border-radius:10px;
+
 }
 
 
-/* MAIN CONTENT */
+/* ==========================================
+   PAGINATION
+========================================== */
 
-.main-content{
+.pagination .page-link{
 
-    margin-left:260px;
+    color:#2563eb;
 
-    padding:30px;
+}
+
+.pagination .active .page-link{
+
+    background:#2563eb;
+
+    border-color:#2563eb;
+
 }
 
 
-/* RESPONSIVE */
+/* ==========================================
+   RESPONSIVE
+========================================== */
 
 @media(max-width:768px){
 
@@ -397,17 +483,39 @@ body{
         height:auto;
 
         position:relative;
+
+    }
+
+    .sidebar-menu{
+
+        overflow:visible;
+
+    }
+
+    .sidebar-footer{
+
+        margin-top:0;
+
     }
 
     .main-content{
 
         margin-left:0;
+
+        padding:20px;
+
     }
 
-    .sidebar-footer{
+    .main-container{
 
-        position:relative;
+        padding:20px;
 
-        margin-top:20px;
     }
+
+    .page-title{
+
+        font-size:24px;
+
+    }
+
 }

@@ -2,6 +2,108 @@
 
 {% block content %}
 
+<div style="
+    max-width:700px;
+    margin:50px auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+">
+
+    <h2 style="
+        text-align:center;
+        margin-bottom:30px;
+        font-size:38px;
+        font-weight:bold;
+        color:#1e293b;
+    ">
+        Add Student
+    </h2>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {% for field in form %}
+
+        <div style="margin-bottom:20px;">
+
+            <label style="
+                display:block;
+                font-size:18px;
+                font-weight:600;
+                margin-bottom:8px;
+                color:#374151;
+            ">
+                {{ field.label }}
+            </label>
+
+            {% comment %} {{ field }} {% endcomment %}
+            <input
+    type="{{ field.field.widget.input_type }}"
+    name="{{ field.name }}"
+    value="{{ field.value|default:'' }}"
+    style="
+        width:100%;
+        padding:12px;
+        border:1px solid #ccc;
+        border-radius:10px;
+        font-size:16px;
+    ">
+
+        </div>
+
+        {% endfor %}
+
+        <div style="
+            margin-top:30px;
+            display:flex;
+            gap:15px;
+        ">
+
+            <button
+                type="submit"
+                style="
+                    background:#16a34a;
+                    color:white;
+                    border:none;
+                    padding:12px 25px;
+                    border-radius:10px;
+                    font-size:17px;
+                    font-weight:bold;
+                    cursor:pointer;
+                "
+            >
+                Save Student
+            </button>
+
+            <a
+                href="/attendance/"
+                style="
+                    background:#6c757d;
+                    color:white;
+                    text-decoration:none;
+                    padding:12px 25px;
+                    border-radius:10px;
+                    font-size:17px;
+                    font-weight:bold;
+                "
+            >
+                Back
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
+{% comment %} {% extends 'private_base.html' %}
+
+{% block content %}
+
 <div class="container mt-5">
 
     <div class="row justify-content-center">
@@ -48,4 +150,4 @@
 
 </div>
 
-{% endblock %}
+{% endblock %} {% endcomment %}
